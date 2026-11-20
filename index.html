@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Informe Mesa de Ayuda</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <img src="assets/logo.png" alt="Punto Alto Soluciones Integrales" class="logo">
+  </header>
+
+  <main>
+    <section class="card" id="paso-archivo">
+      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Subir la sábana de tickets">
+        <strong>Arrastra aquí la sábana de tickets</strong>
+        <span>o haz clic para elegirla (.xlsx, .xls o .csv)</span>
+        <input type="file" id="archivo" accept=".xlsx,.xls,.csv" hidden>
+      </div>
+      <p class="privado">El archivo se procesa solo en este computador; no se envía a ningún servidor.</p>
+      <p class="error" id="error" role="alert" hidden></p>
+    </section>
+
+    <div id="resultado" hidden>
+      <section class="card">
+        <div class="fila-mes">
+          <div>
+            <h2>Mes del informe</h2>
+            <p class="muted" id="resumen-archivo"></p>
+          </div>
+          <label class="sel">
+            <span>Mes</span>
+            <select id="mes"></select>
+          </label>
+        </div>
+        <ul class="avisos" id="avisos"></ul>
+      </section>
+
+      <section class="card" id="vista"></section>
+
+      <section class="card">
+        <h2>Ajustes <small>(se guardan en este navegador)</small></h2>
+        <p class="muted">Se aplican a todas las presentaciones que generes desde este navegador.</p>
+
+        <details open>
+          <summary>Filtros: qué tickets se excluyen <span class="chip" id="resumen-filtros"></span></summary>
+          <p class="muted">Lo que desmarques en «Incluir» se excluye de <b>toda</b> la presentación: totales, cierres, días de la semana, ingreso diario, evolución y colas. Por defecto se excluyen las colas Incidentes y Producción y los tickets de Marco Manríquez y Washington Morales; todos los días están incluidos.</p>
+          <h3>Días de la semana <small>(según la fecha de creación)</small></h3>
+          <div class="dias" id="cfg-dias"></div>
+          <h3>Colas</h3>
+          <div class="tabla-wrap"><table class="cfg" id="cfg-colas"></table></div>
+          <h3>Agentes / propietarios del ticket</h3>
+          <p class="muted" id="msg-agentes"></p>
+          <div class="tabla-wrap"><table class="cfg" id="cfg-agentes"></table></div>
+        </details>
+
+        <details open>
+          <summary>Gráficos</summary>
+          <label class="radio"><input type="radio" name="graficos" value="imagen"> <b>Imagen</b> (recomendado): se ven igual en PowerPoint, Google Slides, Keynote y la vista previa de Mac. No se pueden editar.</label>
+          <label class="radio"><input type="radio" name="graficos" value="nativo"> <b>Editables</b>: gráficos nativos de PowerPoint. Algunos visores (p. ej. Google Slides o la vista previa de Mac) pueden no mostrarlos.</label>
+        </details>
+
+        <details>
+          <summary>Próximos pasos (última lámina)</summary>
+          <p class="muted">Una acción por línea, hasta cuatro. Si lo dejas vacío, se proponen según los datos del mes.</p>
+          <textarea id="proximos" rows="5" placeholder="Ej.: Solicitar el reporte de tiempos por ticket"></textarea>
+        </details>
+      </section>
+
+      <div class="acciones">
+        <button type="button" id="slides" hidden>Crear en Google Slides</button>
+        <button type="button" id="generar">Descargar presentación (.pptx)</button>
+        <span class="muted" id="estado-gen"></span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">Hecho por Benja</footer>
+
+  <script src="vendor/xlsx.full.min.js"></script>
+  <script src="vendor/pptxgen.bundle.js"></script>
+  <script src="assets.js"></script>
+  <script src="core.js"></script>
+  <script src="charts.js"></script>
+  <script src="deck.js"></script>
+  <script src="config.js"></script>
+  <script src="google.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
